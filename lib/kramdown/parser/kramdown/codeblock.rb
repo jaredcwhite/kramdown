@@ -16,19 +16,19 @@ module Kramdown
   module Parser
     class Kramdown
 
-      CODEBLOCK_START = INDENT
-      CODEBLOCK_MATCH = /(?:#{BLANK_LINE}?(?:#{INDENT}[ \t]*\S.*\n)+(?:(?!#{IAL_BLOCK_START}|#{EOB_MARKER}|^#{OPT_SPACE}#{LAZY_END_HTML_STOP}|^#{OPT_SPACE}#{LAZY_END_HTML_START})^[ \t]*\S.*\n)*)*/
+      # CODEBLOCK_START = INDENT
+      # CODEBLOCK_MATCH = /(?:#{BLANK_LINE}?(?:#{INDENT}[ \t]*\S.*\n)+(?:(?!#{IAL_BLOCK_START}|#{EOB_MARKER}|^#{OPT_SPACE}#{LAZY_END_HTML_STOP}|^#{OPT_SPACE}#{LAZY_END_HTML_START})^[ \t]*\S.*\n)*)*/
 
       # Parse the indented codeblock at the current location.
-      def parse_codeblock
-        start_line_number = @src.current_line_number
-        data = @src.scan(self.class::CODEBLOCK_MATCH)
-        data.gsub!(/\n( {0,3}\S)/, ' \\1')
-        data.gsub!(INDENT, '')
-        @tree.children << new_block_el(:codeblock, data, nil, location: start_line_number)
-        true
-      end
-      define_parser(:codeblock, CODEBLOCK_START)
+#      def parse_codeblock
+#        start_line_number = @src.current_line_number
+#        data = @src.scan(self.class::CODEBLOCK_MATCH)
+#        data.gsub!(/\n( {0,3}\S)/, ' \\1')
+#        data.gsub!(INDENT, '')
+#        @tree.children << new_block_el(:codeblock, data, nil, location: start_line_number)
+#        true
+#      end
+#      define_parser(:codeblock, CODEBLOCK_START)
 
       FENCED_CODEBLOCK_START = /^~{3,}/
       FENCED_CODEBLOCK_MATCH = /^((~){3,})\s*?((\S+?)(?:\?\S*)?)?\s*?\n(.*?)^\1\2*\s*?\n/m
